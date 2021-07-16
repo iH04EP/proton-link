@@ -1,6 +1,6 @@
 {
     "name": "@bloks/link",
-    "version": "3.2.3-8",
+    "version": "3.2.3-9",
     "description": "Library for authenticating and signing transactions using the Anchor Link protocol",
     "license": "BSD-3-Clause",
     "main": "lib/proton-link.js",
