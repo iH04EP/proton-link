@@ -1,12 +1,12 @@
 {
-    "name": "anchor-link",
-    "version": "3.2.3",
+    "name": "@bloks/link",
+    "version": "3.2.3-8",
     "description": "Library for authenticating and signing transactions using the Anchor Link protocol",
     "license": "BSD-3-Clause",
-    "main": "lib/anchor-link.js",
-    "module": "lib/anchor-link.m.js",
-    "types": "lib/anchor-link.d.ts",
-    "unpkg": "lib/anchor-link.bundle.js",
+    "main": "lib/proton-link.js",
+    "module": "lib/proton-link.m.js",
+    "types": "lib/proton-link.d.ts",
+    "unpkg": "lib/proton-link.bundle.js",
     "scripts": {
         "prepare": "make"
     },
@@ -15,16 +15,16 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/greymass/anchor-link.git"
+        "url": "git+https://github.com/protonprotocol/proton-link.git"
     },
     "authors": [
         "Johan Nordberg <code@johan-nordberg.com>",
         "Aaron Cox <jesta@greymass.com>"
     ],
     "bugs": {
-        "url": "https://github.com/greymass/anchor-link/issues"
+        "url": "https://github.com/protonprotocol/proton-link/issues"
     },
-    "homepage": "https://github.com/greymass/anchor-link",
+    "homepage": "https://github.com/protonprotocol/proton-link",
     "files": [
         "lib/*",
         "src/*"
@@ -34,9 +34,9 @@
         "crypto": false
     },
     "dependencies": {
-        "@greymass/eosio": "^0.4.0",
+        "@bloks/signing-request": "^2.2.2-2",
+        "@greymass/eosio": "^0.4.7",
         "asmcrypto.js": "^2.3.2",
-        "eosio-signing-request": "^2.2.0",
         "fetch-ponyfill": "^7.1.0",
         "isomorphic-ws": "^4.0.1",
         "pako": "^2.0.3",
