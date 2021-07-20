@@ -16,7 +16,7 @@ import {SessionError} from './errors'
 import {Link, TransactArgs, TransactOptions, TransactResult} from './link'
 import {LinkTransport} from './link-transport'
 import {LinkCreate, LinkInfo, SealedMessage} from './link-types'
-import {fetch, sealMessage, sessionMetadata} from './utils'
+import {fetch, logWarn, sealMessage, sessionMetadata} from './utils'
 
 /**
  * Type describing a link session that can create a eosjs compatible
@@ -191,8 +191,7 @@ export class LinkChannelSession extends LinkSession implements LinkTransport {
             try {
                 payloadSent = this.link.transport.sendSessionPayload(payload, this)
             } catch (error) {
-                // eslint-disable-next-line no-console
-                console.warn('Unexpected error when transport tried to send session payload', error)
+                logWarn('Unexpected error when transport tried to send session payload', error)
             }
         }
         if (payloadSent) {
@@ -200,11 +199,17 @@ export class LinkChannelSession extends LinkSession implements LinkTransport {
         }
         fetch(this.channelUrl, {
             method: 'POST',
+            headers: {
+                'X-Buoy-Soft-Wait': '10',
+            },
             body: payload.array,
         })
             .then((response) => {
-                if (response.status !== 200) {
+                if (Math.floor(response.status / 100) !== 2) {
                     clearTimeout(timer)
+                    if (response.status === 202) {
+                        logWarn('Missing delivery ack from session channel')
+                    }
                     cancel(new SessionError('Unable to push message', 'E_DELIVERY', this))
                 } else {
                     // request delivered
@@ -274,8 +279,7 @@ export class LinkChannelSession extends LinkSession implements LinkTransport {
                 metadata.name = res.payload.link_name
                 this.metadata = metadata
             } catch (error) {
-                // eslint-disable-next-line no-console
-                console.warn('Unable to recover link session', error)
+                logWarn('Unable to recover link session', error)
             }
         }
         return res
