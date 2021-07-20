@@ -10,7 +10,7 @@ import {
     Serializer,
 } from '@greymass/eosio'
 
-import {ChainId, ChainIdType, SigningRequest} from 'eosio-signing-request'
+import {ChainId, ChainIdType, SigningRequest} from '@bloks/signing-request'
 
 import {SessionError} from './errors'
 import {Link, TransactArgs, TransactOptions, TransactResult} from './link'

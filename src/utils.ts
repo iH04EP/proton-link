@@ -1,5 +1,5 @@
 import makeFetch from 'fetch-ponyfill'
-import {AES_CBC} from 'asmcrypto.js'
+import {AES_CBC} from '@jafri/asmcrypto.js'
 import {
     Bytes,
     Checksum256,
@@ -9,7 +9,7 @@ import {
     Serializer,
     UInt64,
 } from '@greymass/eosio'
-import {CallbackPayload, SigningRequest} from 'eosio-signing-request'
+import {CallbackPayload, SigningRequest} from '@bloks/signing-request'
 
 import {SealedMessage} from './link-types'
 

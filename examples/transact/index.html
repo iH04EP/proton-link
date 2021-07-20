@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anchor Link - Transact</title>
-    <script src="https://unpkg.com/anchor-link@3"></script>
-    <script src="https://unpkg.com/anchor-link-browser-transport@3"></script>
+    <script src="https://unpkg.com/proton-link@3"></script>
+    <script src="https://unpkg.com/proton-link-browser-transport@3"></script>
     <script>
         // initialize the browser transport
-        const transport = new AnchorLinkBrowserTransport()
+        const transport = new ProtonBrowserTransport()
         // initialize the link, this time we are using the TELOS chain
-        const link = new AnchorLink({
+        const link = new ProtonLink({
             transport,
             chains: [{
                 chainId: '4667b205c6838ef70ff7988f6e8257e8be0e1284a2f59699054a018f743b1d11',

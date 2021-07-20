@@ -13,7 +13,7 @@ import pkg from './package.json'
 const license = fs.readFileSync('LICENSE').toString('utf-8').trim()
 const banner = `
 /**
- * Anchor Link v${pkg.version}
+ * Proton Link v${pkg.version}
  * ${pkg.homepage}
  *
  * @license
@@ -23,11 +23,11 @@ const banner = `
 
 const exportFix = `
 (function () {
-    var pkg = AnchorLink;
-    AnchorLink = pkg.default;
+    var pkg = ProtonLink;
+    ProtonLink = pkg.default;
     for (var key in pkg) {
         if (key === 'default') continue;
-        AnchorLink[key] = pkg[key];
+        ProtonLink[key] = pkg[key];
     }
 })()
 `
@@ -74,7 +74,7 @@ export default [
         output: {
             banner,
             footer: exportFix,
-            name: 'AnchorLink',
+            name: 'ProtonLink',
             file: pkg.unpkg,
             format: 'iife',
             sourcemap: true,

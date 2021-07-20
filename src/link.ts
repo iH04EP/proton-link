@@ -31,7 +31,7 @@ import {
     ResolvedTransaction,
     SigningRequest,
     SigningRequestCreateArguments,
-} from 'eosio-signing-request'
+} from '@bloks/signing-request'
 
 import {CancelError, IdentityError} from './errors'
 import {LinkChainConfig, LinkOptions} from './link-options'
@@ -171,10 +171,10 @@ export class LinkChain implements AbiProvider {
  * @example
  *
  * ```ts
- * import AnchorLink from 'anchor-link'
- * import ConsoleTransport from 'anchor-link-console-transport'
+ * import ProtonLink from 'proton-link'
+ * import ConsoleTransport from 'proton-console-transport'
  *
- * const link = new AnchorLink({
+ * const link = new ProtonLink({
  *     transport: new ConsoleTransport(),
  *     chains: [
  *         {
@@ -197,6 +197,10 @@ export class Link {
     public readonly transport: LinkTransport
     /** Storage adapter used to persist sessions. */
     public readonly storage?: LinkStorage
+    /** Scheme of request */
+    public readonly scheme?: string
+    /** Scheme of request */
+    public readonly walletType?: string
 
     private callbackService: LinkCallbackService
     private verifyProofs: boolean
@@ -245,6 +249,10 @@ export class Link {
             options.encodeChainIds !== undefined
                 ? options.encodeChainIds
                 : LinkOptions.defaults.encodeChainIds
+        this.scheme = options.scheme
+        if (options.walletType && options.walletType.length > 0) {
+            this.walletType = options.walletType || ''
+        }
     }
 
     /**
@@ -298,7 +306,7 @@ export class Link {
                     chainId: c.chainId,
                     broadcast: false,
                 },
-                {abiProvider: c, zlib}
+                {abiProvider: c, zlib, scheme: this.scheme}
             )
         } else {
             // multi-chain request
@@ -310,7 +318,7 @@ export class Link {
                     broadcast: false,
                 },
                 // abi's will be pulled from the first chain and assumed to be identical on all chains
-                {abiProvider: this.chains[0], zlib}
+                {abiProvider: this.chains[0], zlib, scheme: this.scheme}
             )
         }
         if (t.prepare) {
@@ -389,6 +397,7 @@ export class Link {
             const resolved = await ResolvedSigningRequest.fromPayload(payload, {
                 zlib,
                 abiProvider: c,
+                scheme: this.scheme,
             })
             // prepend cosigner signature if present
             const cosignerSig = resolved.request.getInfoKey('cosig', {
@@ -701,6 +710,12 @@ export class Link {
         const key = this.sessionKey(identifier, formatAuth(auth), String(chainId))
         await this.storage.remove(key)
         await this.touchSession(identifier, auth, chainId, true)
+        if (await this.storage.read('wallet-type')) {
+            this.storage.remove('wallet-type')
+        }
+        if (await this.storage.read('user-auth')) {
+            this.storage.remove('user-auth')
+        }
     }
 
     /**
@@ -737,7 +752,7 @@ export class Link {
                 let request = SigningRequest.fromTransaction(
                     args.chainId,
                     args.serializedTransaction,
-                    {abiProvider: c, zlib}
+                    {abiProvider: c, zlib, scheme: this.scheme}
                 )
                 const callback = this.callbackService.create()
                 request.setCallback(callback.url, true)
@@ -791,6 +806,11 @@ export class Link {
             const data = JSON.stringify(session.serialize())
             await this.storage.write(key, data)
             await this.touchSession(session.identifier, session.auth, session.chainId)
+
+            // once successfully logged in, set wallet type so restore session can work properly
+            if (this.walletType) {
+                this.storage!.write('wallet-type', this.walletType)
+            }
         }
     }
 
