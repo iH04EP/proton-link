@@ -1,6 +1,6 @@
 {
     "name": "@bloks/link",
-    "version": "3.2.3-21",
+    "version": "3.2.3-22",
     "description": "Library for authenticating and signing transactions using the Anchor Link protocol",
     "license": "BSD-3-Clause",
     "main": "lib/proton-link.js",
@@ -34,7 +34,7 @@
         "crypto": false
     },
     "dependencies": {
-        "@bloks/signing-request": "^2.2.2-7",
+        "@bloks/signing-request": "^2.2.2-8",
         "@greymass/eosio": "^0.4.7",
         "@jafri/asmcrypto.js": "^2.3.2",
         "fetch-ponyfill": "^7.1.0",
