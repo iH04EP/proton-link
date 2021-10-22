@@ -31,6 +31,7 @@ import {
     ResolvedTransaction,
     SigningRequest,
     SigningRequestCreateArguments,
+    SigningRequestEncodingOptions,
 } from '@bloks/signing-request'
 
 import {CancelError, IdentityError} from './errors'
@@ -198,7 +199,7 @@ export class Link {
     /** Storage adapter used to persist sessions. */
     public readonly storage?: LinkStorage
     /** Scheme of request */
-    public readonly scheme?: string
+    public readonly scheme: SigningRequestEncodingOptions['scheme']
     /** Scheme of request */
     public readonly walletType?: string
 
@@ -502,12 +503,15 @@ export class Link {
      * @note This is for advanced use-cases, you probably want to use [[Link.login]] instead.
      */
     public async identify(args: {
-        scope: NameType
+        // scope: NameType
         requestPermission?: PermissionLevelType
         info?: {[key: string]: ABISerializable | Bytes}
     }): Promise<IdentifyResult> {
         const {request, callback} = await this.createRequest({
-            identity: {permission: args.requestPermission, scope: args.scope},
+            identity: {
+                permission: args.requestPermission,
+                // scope: args.scope,
+            },
             info: args.info,
         })
         const res = await this.sendRequest(request, callback)
@@ -572,15 +576,16 @@ export class Link {
             user_agent: this.getUserAgent(),
         })
         const res = await this.identify({
-            scope: identifier,
+            // scope: identifier,
             info: {
                 link: createInfo,
-                scope: identifier,
+                // scope: identifier,
             },
         })
         const metadata = sessionMetadata(res.payload, res.resolved.request)
         const signerKey = res.proof.recover()
         let session: LinkSession
+
         if (res.payload.link_ch && res.payload.link_key && res.payload.link_name) {
             session = new LinkChannelSession(
                 this,

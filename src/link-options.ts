@@ -1,5 +1,5 @@
 import type {APIClient} from '@greymass/eosio'
-import type {ChainIdType} from '@bloks/signing-request'
+import type {ChainIdType, SigningRequestEncodingOptions} from '@bloks/signing-request'
 import type {LinkStorage} from './link-storage'
 import type {LinkTransport} from './link-transport'
 import type {LinkCallbackService} from './link-callback'
@@ -82,7 +82,7 @@ export interface LinkOptions {
     /**
      * Scheme for transport
      */
-    scheme?: string
+    scheme: SigningRequestEncodingOptions['scheme']
     /**
      * Type of wallet (Anchor/Proton)
      */

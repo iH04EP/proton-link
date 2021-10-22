@@ -1,5 +1,7 @@
 export * from './link'
 export * from './link-session'
+export * from './link-types'
+
 export type {LinkOptions, LinkChainConfig} from './link-options'
 export type {LinkTransport} from './link-transport'
 export type {LinkStorage} from './link-storage'

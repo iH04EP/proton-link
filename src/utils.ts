@@ -7,6 +7,7 @@ import {
     PrivateKey,
     PublicKey,
     Serializer,
+    UInt32,
     UInt64,
 } from '@greymass/eosio'
 import {CallbackPayload, SigningRequest} from '@bloks/signing-request'
@@ -28,7 +29,7 @@ export function sealMessage(
 ): SealedMessage {
     const secret = privateKey.sharedSecret(publicKey)
     if (!nonce) {
-        nonce = UInt64.random()
+        nonce = UInt64.from(UInt32.random())
     }
     const key = Checksum512.hash(Serializer.encode({object: nonce}).appending(secret.array))
     const cbc = new AES_CBC(key.array.slice(0, 32), key.array.slice(32, 48))
