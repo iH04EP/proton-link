@@ -72,7 +72,7 @@ function waitForCallback(url: string, ctx: {cancel?: () => void}) {
             try {
                 resolve(JSON.parse(response))
             } catch (error) {
-                error.message = 'Unable to parse callback JSON: ' + error.message
+                (error as any).message = 'Unable to parse callback JSON: ' + (error as any).message
                 reject(error)
             }
         }

@@ -431,7 +431,7 @@ export class Link {
             return result
         } catch (error) {
             if (t.onFailure) {
-                t.onFailure(request, error)
+                t.onFailure(request, (error as any))
             }
             throw error
         }
@@ -671,7 +671,7 @@ export class Link {
             sessionData = JSON.parse(data)
         } catch (error) {
             throw new Error(
-                `Unable to restore session: Stored JSON invalid (${error.message || String(error)})`
+                `Unable to restore session: Stored JSON invalid (${(error as any).message || String(error)})`
             )
         }
         const session = LinkSession.restore(this, sessionData)
@@ -696,7 +696,7 @@ export class Link {
         try {
             list = JSON.parse((await this.storage.read(key)) || '[]')
         } catch (error) {
-            throw new Error(`Unable to list sessions: ${error.message || String(error)}`)
+            throw new Error(`Unable to list sessions: ${(error as any).message || String(error)}`)
         }
         return list.map(({auth, chainId}) => ({
             auth: PermissionLevel.from(auth),
