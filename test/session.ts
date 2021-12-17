@@ -2,7 +2,7 @@ import {strict as assert} from 'assert'
 import 'mocha'
 
 import {Link, LinkTransport} from '../src'
-import {SigningRequest} from '@bloks/signing-request'
+import {SigningRequest} from '@proton/signing-request'
 import {
     API,
     APIClient,

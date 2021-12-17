@@ -10,7 +10,7 @@ import {
     UInt32,
     UInt64,
 } from '@greymass/eosio'
-import {CallbackPayload, SigningRequest} from '@bloks/signing-request'
+import {CallbackPayload, SigningRequest} from '@proton/signing-request'
 
 import {SealedMessage} from './link-types'
 

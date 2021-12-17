@@ -32,7 +32,7 @@ import {
     SigningRequest,
     SigningRequestCreateArguments,
     SigningRequestEncodingOptions,
-} from '@bloks/signing-request'
+} from '@proton/signing-request'
 
 import {CancelError, IdentityError} from './errors'
 import {LinkChainConfig, LinkOptions} from './link-options'

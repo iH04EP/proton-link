@@ -6,5 +6,5 @@ import {Link} from './index-module'
 export default Link
 
 // expose dependencies
-export * from '@bloks/signing-request'
+export * from '@proton/signing-request'
 export * from '@greymass/eosio'

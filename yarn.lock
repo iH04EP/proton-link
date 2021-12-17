@@ -894,14 +894,6 @@
     "@babel/helper-validator-identifier" "^7.15.7"
     to-fast-properties "^2.0.0"
 
-"@bloks/signing-request@^2.2.2-8":
-  version "2.2.2-8"
-  resolved "https://registry.yarnpkg.com/@bloks/signing-request/-/signing-request-2.2.2-8.tgz#ce0ccbac1251980701563c45ecc195f80b3fa5a3"
-  integrity sha512-uqlpab4wwW0/yt4BQB0xQB1orwHVmumf202lBb7O03X6JZ1gYe5n3YFfRWK1B+yxwDXxfIjKgBLKpYNGAvUKiA==
-  dependencies:
-    "@greymass/eosio" "^0.4.7"
-    tslib "^2.0.3"
-
 "@cspotcode/source-map-consumer@0.8.0":
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@cspotcode/source-map-consumer/-/source-map-consumer-0.8.0.tgz#33bf4b7b39c178821606f669bbc447a6a629786b"
@@ -995,6 +987,14 @@
   dependencies:
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
+
+"@proton/signing-request@^2.2.2-9":
+  version "2.2.2-9"
+  resolved "https://registry.yarnpkg.com/@proton/signing-request/-/signing-request-2.2.2-9.tgz#9d1f49d97ce79e735e7ff6a0a5e4233dfd5f1ba7"
+  integrity sha512-JeIyyoqDNtHT703KexUeZ1Igv8WAkLah6+DRqagI/ftJRSlXiLPC/p/8WRzUUlYJHmYIgMrVxKiqtmEK+uG82A==
+  dependencies:
+    "@greymass/eosio" "^0.4.7"
+    tslib "^2.0.3"
 
 "@rollup/plugin-babel@^5.2.3":
   version "5.3.0"

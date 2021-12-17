@@ -19,4 +19,4 @@ export {
     ChainId,
     ChainIdType,
     ChainName,
-} from '@bloks/signing-request'
+} from '@proton/signing-request'
