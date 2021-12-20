@@ -1,6 +1,6 @@
 {
     "name": "@proton/link",
-    "version": "3.2.3-25-test.2",
+    "version": "3.2.3-25-test.3",
     "description": "Library for authenticating and signing transactions using the Anchor Link protocol",
     "license": "BSD-3-Clause",
     "main": "lib/proton-link.js",
