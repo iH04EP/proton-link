@@ -11,12 +11,8 @@ Key features:
   - Open standard
 
 Resources:
-  - [API Documentation](https://greymass.github.io/proton-link)
   - [Protocol Specification](./protocol.md)
-  - [Developer Chat (Telegram)](https://t.me/anchor_link)
-
-Guides:
-  - [Integrating an app with Anchor using proton-link](https://forums.greymass.com/t/integrating-an-app-with-anchor-using-proton-link/165)
+  - [Developer Chat (Telegram)](https://t.me/protondev)
 
 Examples:
   - [Simple Examples](./examples)
@@ -26,19 +22,19 @@ The `proton-link` package is distributed both as a module on [npm](https://www.n
 
 ### Browser using a bundler (recommended)
 
-Install Anchor Link and a [transport](#transports):
+Install Proton Link and a [transport](#transports):
 
 ```
-yarn add proton-link proton-link-browser-transport
+yarn add @proton/link @proton/browser-transport
 # or
-npm install --save proton-link proton-link-browser-transport
+npm install --save @proton/link @proton/link-browser-transport
 ```
 
 Import them into your project:
 
 ```js
-import ProtonLink from 'proton-link'
-import ProtonBrowserTransport from 'proton-browser-transport'
+import ProtonLink from '@proton/link'
+import ProtonBrowserTransport from '@proton/browser-transport'
 ```
 
 ### Browser using a pre-built bundle
@@ -46,28 +42,11 @@ import ProtonBrowserTransport from 'proton-browser-transport'
 Include the scripts in your `<head>` tag.
 
 ```html
-<script src="https://unpkg.com/proton-link@3"></script>
-<script src="https://unpkg.com/proton-link-browser-transport@3"></script>
+<script src="https://unpkg.com/@proton/link@3.2.3-27"></script>
+<script src="https://unpkg.com/@proton/browser-transport@3.2.1-26"></script>
 ```
 
 `ProtonLink` and `ProtonBrowserTransport` are now available in the global scope of your document.
-
-### Using node.js
-
-Using node.js
-
-```
-yarn add proton-link proton-link-console-transport
-# or
-npm install --save proton-link proton-link-console-transport
-```
-
-Import them into your project:
-
-```js
-const ProtonLink = require('proton-link')
-const ProtonConsoleTransport = require('proton-console-transport')
-```
 
 ## Usage
 
@@ -86,7 +65,7 @@ const link = new ProtonLink({
 })
 ```
 
-Now you have a link instance that can be used in the browser to login and/or transact. See [options](https://greymass.github.io/proton-link/interfaces/linkoptions.html) for a full list of available options. Also refer to the [proton-link-browser-transport](https://github.com/protonprotocol/proton-link-browser-transport/tree/master#basic-usage) README for a list of available options within the transport.
+Now you have a link instance that can be used in the browser to login and/or transact. Refer to the [proton-link-browser-transport](https://github.com/protonprotocol/proton-link-browser-transport/tree/master#basic-usage) README for a list of available options within the transport.
 
 ### Create a user session
 
@@ -103,7 +82,7 @@ console.log(`Logged in as ${session.auth}`)
 
 ### Perform a transaction with a user session
 
-Using the session you have persisted within your applications state from the user login, you can now send transactions through the session to the users wallet using the [transact](https://greymass.github.io/proton-link/classes/link.html#transact) method.
+Using the session you have persisted within your applications state from the user login, you can now send transactions through the session to the users wallet using the [transact] method.
 
 ```ts
 const action = {
@@ -124,7 +103,7 @@ session.transact({action}).then(({transaction}) => {
 
 ### Restoring a session
 
-If a user has previously logged in to your application, you can restore that previous session by calling the [restoreSession](https://greymass.github.io/proton-link/classes/link.html#restoresession) method on your link instance.
+If a user has previously logged in to your application, you can restore that previous session by calling the [restoreSession] method on your link instance.
 
 ```ts
 link.restoreSession('mydapp').then(({session}) => {
@@ -147,14 +126,12 @@ link.restoreSession('mydapp').then(({session}) => {
 
 ### Additional Methods
 
-A full list of all methods can be found in the [Link class documentation](https://greymass.github.io/proton-link/classes/link.html).
-
-- List all available sessions: [listSessions](https://greymass.github.io/proton-link/classes/link.html#listsessions)
-- Removing a session: [removeSession](https://greymass.github.io/proton-link/classes/link.html#removesession)
+- List all available sessions: listSessions
+- Removing a session: removeSession
 
 ### One-shot transact
 
-To sign action(s) or a transaction using the link without logging in you can call the [transact](https://greymass.github.io/proton-link/classes/link.html#transact) method on your link instance.
+To sign action(s) or a transaction using the link without logging in you can call the transact method on your link instance.
 
 ```ts
 const action = {
@@ -179,20 +156,17 @@ link.transact({action}).then(({signer, transaction}) => {
 })
 ```
 
-You can find more examples in the [examples directory](./examples) at the root of this repository and don't forget to look at the [API documentation](https://greymass.github.io/proton-link/classes/link.html).
+You can find more examples in the [examples directory](./examples) at the root of this repository.
 
 ## Transports
 
-Transports in Anchor Link are responsible for getting signature requests to the users wallet when establishing a session or when using anchor link without logging in.
+Transports in Proton Link are responsible for getting signature requests to the users wallet when establishing a session or when using anchor link without logging in.
 
 Available transports:
 
  Package | Description
 ---------| ---------------
  [proton-browser-transport](https://github.com/protonprotocol/proton-browser-transport) | Browser overlay that generates QR codes or triggers local URI handler if available
- [proton-console-transport](https://github.com/protonprotocol/proton-console-transport) | Transport that prints ASCII QR codes and esr:// links to the JavaScript console
-
-See the [`LinkTransport` documentation](https://greymass.github.io/proton-link/interfaces/linktransport.html) for details on how to implement custom transports.
 
 ## Protocol
 
@@ -209,5 +183,3 @@ You need [Make](https://www.gnu.org/software/make/), [node.js](https://nodejs.or
 Clone the repository and run `make` to checkout all dependencies and build the project. See the [Makefile](./Makefile) for other useful targets. Before submitting a pull request make sure to run `make lint`.
 
 ---
-
-Made with ☕️ & ❤️ by [Greymass](https://greymass.com), if you find this useful please consider [supporting us](https://greymass.com/support-us).
