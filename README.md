@@ -1,4 +1,4 @@
-# Anchor Link [![Package Version](https://img.shields.io/npm/v/proton-link.svg?style=flat-square)](https://www.npmjs.com/package/proton-link) ![License](https://img.shields.io/npm/l/proton-link.svg?style=flat-square)
+# Proton Link [![Package Version](https://img.shields.io/npm/v/@proton/link.svg?style=flat-square)](https://www.npmjs.com/package/proton-link) ![License](https://img.shields.io/npm/l/@proton/link.svg?style=flat-square)
 
 Persistent, fast and secure signature provider for EOSIO chains built on top of [EOSIO Signing Requests (EEP-7)](https://github.com/protonprotocol/proton-signing-request)
 
