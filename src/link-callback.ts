@@ -77,7 +77,12 @@ function waitForCallback(url: string, ctx: {cancel?: () => void}) {
             }
         }
         const connect = () => {
-            const socket = new WebSocket(socketUrl)
+            const socket = new WebSocket(socketUrl);
+            
+            if (typeof navigator != 'undefined' && navigator.product == 'ReactNative') {
+                (socket as any).binaryType = 'blob'
+            }
+
             ctx.cancel = () => {
                 active = false
                 if (
@@ -92,6 +97,7 @@ function waitForCallback(url: string, ctx: {cancel?: () => void}) {
                 if (socket.readyState === WebSocket.OPEN) {
                     socket.close()
                 }
+
                 if (typeof Blob !== 'undefined' && event.data instanceof Blob) {
                     const reader = new FileReader()
                     reader.onload = () => {
