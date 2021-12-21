@@ -20,9 +20,6 @@ Guides:
 
 Examples:
   - [Simple Examples](./examples)
-  - [VueJS Demo Application](https://github.com/protonprotocol/proton-link-demo)
-  - [ReactJS Demo Application](https://github.com/protonprotocol/proton-link-demo-multipass)
-
 ## Installation
 
 The `proton-link` package is distributed both as a module on [npm](https://www.npmjs.com/package/proton-link) and a standalone bundle on [unpkg](http://unpkg.com/proton-link).
