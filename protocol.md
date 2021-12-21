@@ -1,10 +1,10 @@
-# Anchor Link Protocol
+# Proton Link Protocol
 
 Persistent sessions that allows applications to setup a persistent and secure channel for pushing signature requests (ESR/EEP-7) to a wallet.
 
 ## Definitions
 
--   dApp - EOSIO application using Anchor Link its signature provider
+-   dApp - EOSIO application using Proton Link its signature provider
 -   Wallet - Application holding the private keys for the users EOSIO account(s)
 -   Forwarder - Untrusted POST -> WebSocket data forwarder routed with UUIDs
 -   Channel - One-way push channel via the forwarder

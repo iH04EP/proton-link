@@ -30,7 +30,7 @@ npm manifest:
   {
       "name": "@proton/link",
       "version": "3.2.3-24",
-      "description": "Library for authenticating and signing transactions using the Anchor Link protocol",
+      "description": "Library for authenticating and signing transactions using the Proton Link protocol",
       "license": "BSD-3-Clause",
       "main": "lib/proton-link.js",
       "module": "lib/proton-link.m.js",

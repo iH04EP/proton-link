@@ -167,7 +167,7 @@ export class LinkChain implements AbiProvider {
 }
 
 /**
- * Anchor Link main class.
+ * Proton Link main class.
  *
  * @example
  *

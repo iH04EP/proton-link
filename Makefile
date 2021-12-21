@@ -27,7 +27,7 @@ docs: $(SRC_FILES) node_modules
 	./node_modules/.bin/typedoc \
 		--excludeInternal \
 		--excludePrivate --excludeProtected \
-		--name "Anchor Link" --includeVersion --readme none \
+		--name "Proton Link" --includeVersion --readme none \
 		--out docs \
 		src/index-module.ts
 
