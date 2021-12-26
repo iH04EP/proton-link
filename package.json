@@ -36,7 +36,7 @@
     "dependencies": {
         "@greymass/eosio": "^0.4.7",
         "@jafri/asmcrypto.js": "^2.3.2",
-        "@proton/signing-request": "^2.2.2-9",
+        "@proton/signing-request": "2.2.2-9",
         "bson": "^4.6.0",
         "fetch-ponyfill": "^7.1.0",
         "isomorphic-ws": "^4.0.1",
